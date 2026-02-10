@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>грузка сервака</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .background-media {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .window {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            z-index: 10;
+            background: rgba(13, 91, 182, 0.642); 
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(25px) saturate(160%);
+            -webkit-backdrop-filter: blur(25px) saturate(160%);
+            padding: 4px; 
+        }
+
+        .title-bar {
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            position: relative;
+            z-index: 11;
+        }
+
+        .title-bar-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            font-size: 13px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+        }
+
+        .window-icon {
+            width: 16px;
+            height: 16px;
+            background: url('https://i.redd.it/idad9uwowb6a1.png') no-repeat center;
+            background-size: contain;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .control-btn {
+            width: 30px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            border-radius: 2px;
+            color: white;
+            font-size: 10px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 49%, rgba(0, 0, 0, 0.1) 50%, rgba(255, 255, 255, 0.1) 100%);
+        }
+
+        .btn-close {
+            width: 45px;
+            border: 1px solid rgba(0, 0, 0, 0.6);
+            background: linear-gradient(180deg, #f8a5a5 0%, #f24545 49%, #c20000 50%, #a10000 100%);
+        }
+
+        .loading-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0 0 4px 4px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .window::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+            border-radius: 8px 8px 0 0;
+            z-index: 12;
+        }
+
+        .logo {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 25px;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            padding: 4px;
+            position: relative;
+            overflow: hidden;
+            z-index: 15;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.1) 100%);
+            pointer-events: none;
+            z-index: 16;
+        }
+
+        .logo-inner {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #00adef 0%, #0072bc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 300;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 40, 90, 0.9);
+            margin-bottom: 5px;
+            position: relative; z-index: 15;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+            margin-bottom: 30px;
+            position: relative; z-index: 15;
+        }
+
+        .tips-container { min-height: 100px; position: relative; z-index: 15; }
+
+        .tip-text {
+            font-size: 16px;
+            color: #ffffff;
+            background: linear-gradient(
+                180deg,
+                #fbfeff8f 0%,
+                rgb(150,180,240) 39%,
+                rgb(61, 115, 170) 40%,
+                #286b9b52 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .loading-indicator { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            scale: 1.6;
+
+            background: linear-gradient(
+                180deg,
+                rgb(230,230,230) 0%,
+                rgb(150,180,240) 30%,
+                rgb(20,70,170) 65%,
+                rgb(90,220,255) 100%
+            );
+
+            box-shadow: 0 0 4px rgba(120,200,255,0.35);
+            filter: brightness(1);
+
+            animation: pulse 2.6s infinite linear;
+        }
+
+        @keyframes pulse {
+            0%, 25% {filter: brightness(1);}
+            35% {filter: brightness(1.3);}
+            50% {filter: brightness(1.4);}
+            65% {filter: brightness(1.3);}
+            75%, 100% { filter: brightness(1);}
+        }
+
+
+    </style>
+</head>
+<body>
+    <img src="" class="background-media" id="bg-media">
+    <div class="overlay"></div>
+
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-bar-info">
+                <div class="window-icon"></div>
+                <span id="window-title-text"></span>
+            </div>
+            <div class="window-controls">
+                <div class="control-btn">_</div>
+                <div class="control-btn">▢</div>
+                <div class="control-btn btn-close">✕</div>
+            </div>
+        </div>
+
+        <div class="loading-card">
+            <div class="logo">
+                <div class="logo-inner">⚙</div>
+            </div>
+
+            <div class="title" id="title-el"></div>
+            <div class="subtitle" id="subtitle-el"></div>
+
+            <div class="tips-container">
+                <div id="tip-display" class="tip-text"></div>
+            </div>
+
+            <div class="loading-indicator">
+                <div class="dot" style="animation-delay: 0s"></div>
+                <div class="dot" style="animation-delay: 0.87s"></div>
+                <div class="dot" style="animation-delay: 1.74s"></div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="background-music" loop autoplay></audio>
+
+    <script>
+        const CONFIG = {
+            windowTitle: 'Garry\'s Mod',
+            title: 'ПОДКЛЮЧЕНИЕ',
+            subtitle: 'Добро пожаловать на сервер ULTRAPIZDEC',
+            backgrounds: [
+                'img/background1.png',
+                'img/background2.png',
+                'img/background3.png',
+                'img/background4.png',
+                'img/background5.png'
+            ],
+            musicFiles: [
+                'sound/loading_music1.mp3',
+                'sound/loading_music2.mp3',
+                'sound/loading_music3.mp3',
+                'sound/loading_music4.mp3'
+            ],
+            musicVolume: 0.5,
+            tips: [
+                'ПРИКИНЬ, ЭТО ЗАГРУЗОЧНЫЙ ЭКРАН',
+                'Рубби походу женщина, которая сидит в темной комнате и запускает серверы для тебя',
+                'Если твой нищий пк не тянет то тебе лучше не играть',
+                'Я не знаю что еще написать :/',
+                'Если ты женского пола то у тебя есть 5 минут чтобы скинуть фотку ножек в наш тг чат ❤',
+                'Введи себе ▮▮▮▮▮▮ в вены и наслаждайся',
+                'Я ПОМЫЛСЯ ХАХАХАХА',
+                'Не будь админом, оно тебе не надо',
+                'официальная дата рождение рубича это 1 августа ^^',
+                'Rubby4ch - это не человек, а искусственный интеллект, который был создан в 2010 году для управления серверами Garry\'s Mod',
+                'Парни выше нос:)',
+                'Всегда хвали себя даже если это маленькие вещи',
+                'Вы важны также сильно как и смолтаун среди игроков з-сити',
+                'Будьте хороши также как система повреждений из з-сити',
+                '#позитивчик:))))',
+                'блять, ксс забыл скачать :(',
+                'мннмн',
+                'Brisorm делает хуйню, не обращайте внимания',
+                'эээ ну типо сникпик тута',
+                'брисько 🤤 (вы не шарите)',
+                'давай мытся в мытищенске',
+                'Если вы будете красть вещи как шарик у зсити то вас убьют!',
+                'бэм бэм бэм изи бриджи бибэ',
+                'Привет Артур'
+            ]
+        };
+
+        const tipDisplay = document.getElementById('tip-display');
+        const bgMedia = document.getElementById('bg-media');
+        const music = document.getElementById('background-music');
+
+        document.getElementById('window-title-text').textContent = CONFIG.windowTitle;
+        document.getElementById('title-el').textContent = CONFIG.title;
+        document.getElementById('subtitle-el').textContent = CONFIG.subtitle;
+
+        const randomMusic = CONFIG.musicFiles[Math.floor(Math.random() * CONFIG.musicFiles.length)];
+        music.src = randomMusic;
+        music.volume = CONFIG.musicVolume;
+
+        function shuffle(array) {
+            let a = [...array];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        let shuffledTips = shuffle(CONFIG.tips);
+        let tipIndex = 0;
+        tipDisplay.textContent = shuffledTips[tipIndex];
+
+        let currentBgIndex = Math.floor(Math.random() * CONFIG.backgrounds.length);
+        bgMedia.src = CONFIG.backgrounds[currentBgIndex];
+
+        function cycleTips() {
+            const fade = tipDisplay.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 800, fill: 'forwards' });
+            fade.onfinish = () => {
+                tipIndex = (tipIndex + 1) % shuffledTips.length;
+                if (tipIndex === 0) shuffledTips = shuffle(CONFIG.tips);
+                tipDisplay.textContent = shuffledTips[tipIndex];
+                tipDisplay.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 800, fill: 'forwards' });
+            };
+        }
+
+        function cycleBackgrounds() {
+            bgMedia.style.opacity = '0';
+            setTimeout(() => {
+                let nextIndex;
+                do {
+                    nextIndex = Math.floor(Math.random() * CONFIG.backgrounds.length);
+                } while (nextIndex === currentBgIndex && CONFIG.backgrounds.length > 1);
+                
+                currentBgIndex = nextIndex;
+                bgMedia.src = CONFIG.backgrounds[currentBgIndex];
+                bgMedia.onload = () => { bgMedia.style.opacity = '1'; };
+            }, 1500);
+        }
+
+        setInterval(cycleTips, 10000);
+        setInterval(cycleBackgrounds, 30000);
+
+        // для теста в бразевревре
+        document.addEventListener('mousedown', () => {
+            music.play().catch(() => {});
+        }, { once: true });
+    </script>
+</body>
+</html>
