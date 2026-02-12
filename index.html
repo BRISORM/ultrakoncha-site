@@ -43,7 +43,7 @@
             transform: translate(-50%, -50%);
             width: 600px;
             z-index: 10;
-            background: rgba(13, 91, 182, 0.642); 
+            background: rgba(51, 118, 195, 0.466); 
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 20px 70px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
@@ -140,7 +140,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; height: 50%;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.1) 100%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.879) 0%, rgba(255, 255, 255, 0.1) 100%);
             pointer-events: none;
             z-index: 16;
         }
@@ -148,12 +148,11 @@
         .logo-inner {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #00adef 0%, #0072bc 100%);
+            background: linear-gradient(135deg, #2cc3fe 0%, #0072bc 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 50px;
-            color: white;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
@@ -218,11 +217,11 @@
         }
 
         @keyframes pulse {
-            0%, 25% {filter: brightness(1);}
-            35% {filter: brightness(1.3);}
-            50% {filter: brightness(1.4);}
-            65% {filter: brightness(1.3);}
-            75%, 100% { filter: brightness(1);}
+            0%, 25% {scale: 1.6; filter: brightness(1) ;}
+            35% {scale: 1.65; filter: brightness(1.3);}
+            50% {scale: 1.7; filter: brightness(1.4);}
+            65% {scale: 1.65; filter: brightness(1.3);}
+            75%, 100% {scale: 1.6; filter: brightness(1);}
         }
 
 
@@ -247,7 +246,7 @@
 
         <div class="loading-card">
             <div class="logo">
-                <div class="logo-inner">⚙</div>
+                <div class="logo-inner"><img src="img/chelik.png" width="77" height="77"></div>
             </div>
 
             <div class="title" id="title-el"></div>
@@ -277,13 +276,18 @@
                 'img/background2.png',
                 'img/background3.png',
                 'img/background4.png',
-                'img/background5.png'
+                'img/background5.png',
+                'img/background6.png',
+                'img/background7.png'
+                /*'img/background8.png'
+                'img/background9.png'*/ /*ПИНТЕРЕСТ ИДИ НАХУЙ*/
             ],
             musicFiles: [
                 'sound/loading_music1.mp3',
                 'sound/loading_music2.mp3',
                 'sound/loading_music3.mp3',
-                'sound/loading_music4.mp3'
+                'sound/loading_music4.mp3',
+                'sound/loading_music5.mp3'
             ],
             musicVolume: 0.5,
             tips: [
@@ -302,7 +306,7 @@
                 'Вы важны также сильно как и смолтаун среди игроков з-сити',
                 'Будьте хороши также как система повреждений из з-сити',
                 '#позитивчик:))))',
-                'блять, ксс забыл скачать :(',
+                'блять, ксс забыл пой',
                 'мннмн',
                 'Brisorm делает хуйню, не обращайте внимания',
                 'эээ ну типо сникпик тута',
@@ -310,7 +314,11 @@
                 'давай мытся в мытищенске',
                 'Если вы будете красть вещи как шарик у зсити то вас убьют!',
                 'бэм бэм бэм изи бриджи бибэ',
-                'Привет Артур'
+                'Привет Артур',
+                'vovkakatala - один из немногих кто нас "спонсирует", а ты нет :(',
+                'это не нормалда, это хуйпалда',
+                'о ебать, Володя, Привет!',
+                'Оой бля старый, не начинай'
             ]
         };
 
