@@ -36,13 +36,13 @@
             z-index: 2;
         }
 
-        .artur{
+        .version-1 .artur {
             position: fixed;
             top: 70%;
             left: 70%;
         }
 
-        .window {
+        .version-1 .window {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -118,7 +118,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .window::before {
+        .version-1 .window::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; height: 40%;
@@ -230,43 +230,282 @@
             75%, 100% {scale: 1.6; filter: brightness(1);}
         }
 
+        .version-2 {
+            display: none;
+        }
+
+        .version-2 .container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .version-2 .window {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.466);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(25px) saturate(160%);
+            -webkit-backdrop-filter: blur(25px) saturate(160%);
+            padding: 4px;
+        }
+
+        .version-2 .title-bar {
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            position: relative;
+            z-index: 11;
+        }
+
+        .version-2 .title-bar-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            font-size: 13px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+        }
+
+        .version-2 .window-icon {
+            width: 22px;
+            height: 22px;
+            background: url('img/iconmirka.png') no-repeat center;
+            background-size: contain;
+        }
+
+        .version-2 .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .version-2 .control-btn {
+            width: 30px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            border-radius: 2px;
+            color: white;
+            font-size: 10px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 49%, rgba(0, 0, 0, 0.1) 50%, rgba(255, 255, 255, 0.1) 100%);
+        }
+
+        .version-2 .btn-close {
+            width: 45px;
+            border: 1px solid rgba(0, 0, 0, 0.6);
+            background: linear-gradient(180deg, #ff6666 0%, #ff2222 49%, #cc0000 50%, #990000 100%);
+        }
+
+        .version-2 .loading-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0 0 4px 4px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .version-2 .window::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+            border-radius: 8px 8px 0 0;
+            z-index: 12;
+        }
+
+        .version-2 .logo {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 25px;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            padding: 4px;
+            position: relative;
+            overflow: hidden;
+            z-index: 15;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .version-2 .logo::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.879) 0%, rgba(255, 255, 255, 0.1) 100%);
+            pointer-events: none;
+            z-index: 16;
+        }
+
+        .version-2 .logo-inner {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .version-2 .v2-title {
+            font-size: 36px;
+            font-weight: 300;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(90, 0, 0, 0.9);
+            margin-bottom: 5px;
+            position: relative; z-index: 15;
+        }
+
+        .version-2 .v2-subtitle {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+            margin-bottom: 30px;
+            position: relative; z-index: 15;
+        }
+
+        .version-2 .v2-tips-container { min-height: 100px; position: relative; z-index: 15; }
+
+        .version-2 .v2-tip-text {
+            font-size: 16px;
+            color: #ffffff;
+            background: linear-gradient(
+                180deg,
+                #fbfeff8f 0%,
+                rgb(240,150,150) 39%,
+                rgb(170, 50, 50) 40%,
+                #9b285252 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .version-2 .v2-loading-indicator { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
+
+        .version-2 .v2-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            scale: 1.6;
+            background: linear-gradient(
+                180deg,
+                rgb(230,230,230) 0%,
+                rgb(240,150,150) 30%,
+                rgb(170, 50, 50) 65%,
+                rgb(255,100,100) 100%
+            );
+            box-shadow: 0 0 4px rgba(255,100,100,0.35);
+            filter: brightness(1);
+            animation: pulseV2 2.6s infinite linear;
+        }
+
+        @keyframes pulseV2 {
+            0%, 25% {scale: 1.6; filter: brightness(1) ;}
+            35% {scale: 1.65; filter: brightness(1.3);}
+            50% {scale: 1.7; filter: brightness(1.4);}
+            65% {scale: 1.65; filter: brightness(1.3);}
+            75%, 100% {scale: 1.6; filter: brightness(1);}
+        }
 
     </style>
 </head>
 <body>
     <img src="" class="background-media" id="bg-media">
     <div class="overlay"></div>
-    <div class="artur"><img src="img/артур.png"> </div>
 
-    <div class="window">
-        <div class="title-bar">
-            <div class="title-bar-info">
-                <div class="window-icon"></div>
-                <span id="window-title-text"></span>
+    <div class="version-1" id="version-1">
+        <div class="artur"><img src="img/артур.png"> </div>
+        <div class="window">
+            <div class="title-bar">
+                <div class="title-bar-info">
+                    <div class="window-icon"></div>
+                    <span id="window-title-text"></span>
+                </div>
+                <div class="window-controls">
+                    <div class="control-btn">_</div>
+                    <div class="control-btn">▢</div>
+                    <div class="control-btn btn-close">✕</div>
+                </div>
             </div>
-            <div class="window-controls">
-                <div class="control-btn">_</div>
-                <div class="control-btn">▢</div>
-                <div class="control-btn btn-close">✕</div>
+
+            <div class="loading-card">
+                <div class="logo">
+                    <div class="logo-inner"><img src="img/chelik.png" width="77" height="77"></div>
+                </div>
+
+                <div class="title" id="title-el"></div>
+                <div class="subtitle" id="subtitle-el"></div>
+
+                <div class="tips-container">
+                    <div id="tip-display" class="tip-text"></div>
+                </div>
+
+                <div class="loading-indicator">
+                    <div class="dot" style="animation-delay: 0s"></div>
+                    <div class="dot" style="animation-delay: 0.87s"></div>
+                    <div class="dot" style="animation-delay: 1.74s"></div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="loading-card">
-            <div class="logo">
-                <div class="logo-inner"><img src="img/chelik.png" width="77" height="77"></div>
+    <div class="version-2" id="version-2">
+        <div class="window">
+            <div class="title-bar">
+                <div class="title-bar-info">
+                    <div class="window-icon"></div>
+                    <span id="v2-window-title-text"></span>
+                </div>
+                <div class="window-controls">
+                    <div class="control-btn">_</div>
+                    <div class="control-btn">▢</div>
+                    <div class="control-btn btn-close">✕</div>
+                </div>
             </div>
 
-            <div class="title" id="title-el"></div>
-            <div class="subtitle" id="subtitle-el"></div>
+            <div class="loading-card">
+                <div class="logo">
+                    <div class="logo-inner"><img src="img/icn.png" width="77" height="77"></div>
+                </div>
 
-            <div class="tips-container">
-                <div id="tip-display" class="tip-text"></div>
-            </div>
+                <div class="v2-title" id="v2-title-el"></div>
+                <div class="v2-subtitle" id="v2-subtitle-el"></div>
 
-            <div class="loading-indicator">
-                <div class="dot" style="animation-delay: 0s"></div>
-                <div class="dot" style="animation-delay: 0.87s"></div>
-                <div class="dot" style="animation-delay: 1.74s"></div>
+                <div class="v2-tips-container">
+                    <div id="v2-tip-display" class="v2-tip-text"></div>
+                </div>
+
+                <div class="v2-loading-indicator">
+                    <div class="v2-dot" style="animation-delay: 0s"></div>
+                    <div class="v2-dot" style="animation-delay: 0.87s"></div>
+                    <div class="v2-dot" style="animation-delay: 1.74s"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -274,7 +513,11 @@
     <audio id="background-music" loop autoplay></audio>
 
     <script>
-        const CONFIG = {
+        const GLOBAL_CONFIG = {
+            version: Math.random() > 0.5 ? 1 : 2
+        };
+
+        const CONFIG_V1 = {
             windowTitle: 'Garry\'s Mod',
             title: 'ПОДКЛЮЧЕНИЕ',
             subtitle: 'Добро пожаловать!',
@@ -286,8 +529,6 @@
                 'img/background5.png',
                 'img/background6.png',
                 'img/background7.png'
-                /*'img/background8.png'
-                'img/background9.png'*/ /*ПИНТЕРЕСТ ИДИ НАХУЙ*/
             ],
             musicFiles: [
                 'sound/loading_music1.mp3',
@@ -329,65 +570,155 @@
             ]
         };
 
-        const tipDisplay = document.getElementById('tip-display');
-        const bgMedia = document.getElementById('bg-media');
-        const music = document.getElementById('background-music');
+        const CONFIG_V2 = {
+            windowTitle: 'Mirror\'s Edge',
+            title: 'ПОДКЛЮЧЕНИЕ',
+            subtitle: 'Добро пожаловать!',
+            backgroundImage: 'img/backgroundmir.png',
+            musicFile: 'sound/Introduction_mirroredge.mp3',
+            musicVolume: 0.45,
+            messages: [
+                'Рубби походу женщина, которая сидит в темной комнате и запускает серверы для тебя',
+                'Если твой нищий пк не тянет то тебе лучше не играть',
+                'Я не знаю что еще написать :/',
+                'Если ты женского пола то у тебя есть 5 минут чтобы скинуть фотку ножек в наш тг чат ❤',
+                'Введи себе бурамалду в вены и наслаждайся',
+                'Не будь админом, оно тебе не надо',
+                'официальная дата рождение рубича это 1 августа ^^',
+                'Rubby4ch - это не человек, а искусственный интеллект, который был создан в 2010 году для управления серверами Garry\'s Mod',
+                'Всегда хвали себя даже если это маленькие вещи',
+                'Вы важны также сильно как и смолтаун среди игроков з-сити',
+                'Будьте хороши также как система повреждений из з-сити',
+                'а тут должен быть какой-то позитивчик, но я его не придумал :))))',
+                'мннмн',
+                'Brisorm делает хуйню, не обращайте внимания',
+                'эээ ну типо сникпик тута',
+                'брисько 🤤 (вы не шарите)',
+                'чет не мытищинск уже',
+                'бэм бэм бэм изи бриджи бибэ',
+                'Привет Артур',
+                'vovkakatala - один из немногих кто нас "спонсирует", а ты нет :(',
+                'это не нормалда, это хуйпалда',
+                'о ебать, Володя, Привет!',
+                'Оой бля старый, не начинай'
+            ]
+        };
 
-        document.getElementById('window-title-text').textContent = CONFIG.windowTitle;
-        document.getElementById('title-el').textContent = CONFIG.title;
-        document.getElementById('subtitle-el').textContent = CONFIG.subtitle;
+        function initializeVersion1() {
+            document.getElementById('version-1').style.display = 'block';
+            document.getElementById('version-2').style.display = 'none';
 
-        const randomMusic = CONFIG.musicFiles[Math.floor(Math.random() * CONFIG.musicFiles.length)];
-        music.src = randomMusic;
-        music.volume = CONFIG.musicVolume;
+            const tipDisplay = document.getElementById('tip-display');
+            const bgMedia = document.getElementById('bg-media');
+            const music = document.getElementById('background-music');
 
-        function shuffle(array) {
-            let a = [...array];
-            for (let i = a.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [a[i], a[j]] = [a[j], a[i]];
+            document.getElementById('window-title-text').textContent = CONFIG_V1.windowTitle;
+            document.getElementById('title-el').textContent = CONFIG_V1.title;
+            document.getElementById('subtitle-el').textContent = CONFIG_V1.subtitle;
+
+            const randomMusic = CONFIG_V1.musicFiles[Math.floor(Math.random() * CONFIG_V1.musicFiles.length)];
+            music.src = randomMusic;
+            music.volume = CONFIG_V1.musicVolume;
+
+            function shuffle(array) {
+                let a = [...array];
+                for (let i = a.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [a[i], a[j]] = [a[j], a[i]];
+                }
+                return a;
             }
-            return a;
+
+            let shuffledTips = shuffle(CONFIG_V1.tips);
+            let tipIndex = 0;
+            tipDisplay.textContent = shuffledTips[tipIndex];
+
+            let currentBgIndex = Math.floor(Math.random() * CONFIG_V1.backgrounds.length);
+            bgMedia.src = CONFIG_V1.backgrounds[currentBgIndex];
+
+            function cycleTips() {
+                const fade = tipDisplay.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 800, fill: 'forwards' });
+                fade.onfinish = () => {
+                    tipIndex = (tipIndex + 1) % shuffledTips.length;
+                    if (tipIndex === 0) shuffledTips = shuffle(CONFIG_V1.tips);
+                    tipDisplay.textContent = shuffledTips[tipIndex];
+                    tipDisplay.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 800, fill: 'forwards' });
+                };
+            }
+
+            function cycleBackgrounds() {
+                bgMedia.style.opacity = '0';
+                setTimeout(() => {
+                    let nextIndex;
+                    do {
+                        nextIndex = Math.floor(Math.random() * CONFIG_V1.backgrounds.length);
+                    } while (nextIndex === currentBgIndex && CONFIG_V1.backgrounds.length > 1);
+                    
+                    currentBgIndex = nextIndex;
+                    bgMedia.src = CONFIG_V1.backgrounds[currentBgIndex];
+                    bgMedia.onload = () => { bgMedia.style.opacity = '1'; };
+                }, 1500);
+            }
+
+            setInterval(cycleTips, 10000);
+            setInterval(cycleBackgrounds, 30000);
+
+            document.addEventListener('mousedown', () => {
+                music.play().catch(() => {});
+            }, { once: true });
         }
 
-        let shuffledTips = shuffle(CONFIG.tips);
-        let tipIndex = 0;
-        tipDisplay.textContent = shuffledTips[tipIndex];
+        function initializeVersion2() {
+            document.getElementById('version-1').style.display = 'none';
+            document.getElementById('version-2').style.display = 'block';
 
-        let currentBgIndex = Math.floor(Math.random() * CONFIG.backgrounds.length);
-        bgMedia.src = CONFIG.backgrounds[currentBgIndex];
+            const v2TipDisplay = document.getElementById('v2-tip-display');
+            const bgMedia = document.getElementById('bg-media');
+            const music = document.getElementById('background-music');
 
-        function cycleTips() {
-            const fade = tipDisplay.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 800, fill: 'forwards' });
-            fade.onfinish = () => {
-                tipIndex = (tipIndex + 1) % shuffledTips.length;
-                if (tipIndex === 0) shuffledTips = shuffle(CONFIG.tips);
-                tipDisplay.textContent = shuffledTips[tipIndex];
-                tipDisplay.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 800, fill: 'forwards' });
-            };
+            document.getElementById('v2-window-title-text').textContent = CONFIG_V2.windowTitle;
+            document.getElementById('v2-title-el').textContent = CONFIG_V2.title;
+            document.getElementById('v2-subtitle-el').textContent = CONFIG_V2.subtitle;
+
+            music.src = CONFIG_V2.musicFile;
+            music.volume = CONFIG_V2.musicVolume;
+            bgMedia.src = CONFIG_V2.backgroundImage;
+
+            function shuffle(array) {
+                let a = [...array];
+                for (let i = a.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [a[i], a[j]] = [a[j], a[i]];
+                }
+                return a;
+            }
+
+            let shuffledMessages = shuffle(CONFIG_V2.messages);
+            let messageIndex = 0;
+            v2TipDisplay.textContent = shuffledMessages[messageIndex];
+
+            function cycleMessages() {
+                const fade = v2TipDisplay.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 800, fill: 'forwards' });
+                fade.onfinish = () => {
+                    messageIndex = (messageIndex + 1) % shuffledMessages.length;
+                    if (messageIndex === 0) shuffledMessages = shuffle(CONFIG_V2.messages);
+                    v2TipDisplay.textContent = shuffledMessages[messageIndex];
+                    v2TipDisplay.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 800, fill: 'forwards' });
+                };
+            }
+
+            setInterval(cycleMessages, 10000);
+
+            document.addEventListener('mousedown', () => {
+                music.play().catch(() => {});
+            }, { once: true });
         }
 
-        function cycleBackgrounds() {
-            bgMedia.style.opacity = '0';
-            setTimeout(() => {
-                let nextIndex;
-                do {
-                    nextIndex = Math.floor(Math.random() * CONFIG.backgrounds.length);
-                } while (nextIndex === currentBgIndex && CONFIG.backgrounds.length > 1);
-                
-                currentBgIndex = nextIndex;
-                bgMedia.src = CONFIG.backgrounds[currentBgIndex];
-                bgMedia.onload = () => { bgMedia.style.opacity = '1'; };
-            }, 1500);
+        if (GLOBAL_CONFIG.version === 1) {
+            initializeVersion1();
+        } else {
+            initializeVersion2();
         }
-
-        setInterval(cycleTips, 10000);
-        setInterval(cycleBackgrounds, 30000);
-
-        // для теста в бразевревре
-        document.addEventListener('mousedown', () => {
-            music.play().catch(() => {});
-        }, { once: true });
     </script>
 </body>
 </html>
